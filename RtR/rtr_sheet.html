@@ -1,0 +1,176 @@
+<div name="attr_generic_save" value="1d10cs>20cf<5"></div>
+
+<div class="3colrow">
+  <div class="col">
+    <label>Name:</label><input type="text" name="attr_character_name" />
+    <label>Pronouns:</label><input type="text" />
+    <label>Ancestry:</label>
+      <select name="attr_ancestry">
+        <option value="ancestry_koldari">Koldari</option>
+        <option value="ancestry_drakar">Drakar</option>
+        <option value="ancestry_wilder">Wilder</option>
+        <option value="ancestry_jintha">Jintha</option>
+        <option value="ancestry_vampyr">Vampyr</option>
+        <option value="ancestry_jinni">Jinni</option>
+        <option value="ancestry_cambion">Cambion</option>
+        <option value="ancestry_gathan">Gathan</option>
+        <option value="ancestry_ironborn">Ironborn</option>
+      </select>
+    <label>Class:</label>
+      <select name="attr_class">
+        <option value="class_enforcer">Syndicate Enforcer</option>
+        <option value="class_outlaw">Outlaw Rider</option>
+        <option value="class_hunter">Bounty Hunter</option>
+        <option value="class_mmind">Master Mind</option>
+        <option value="class_binder">Spirit Binder</option>
+      </select>
+    <label>Action Points:</label>
+      <input type="number" name="attr_ap_max" value="6" />
+      <input type="number" name="attr_ap" value="6" />
+    <label>Wounds:</label>
+      <input type="number" name="attr_wounds" value="0" />
+    <label>Wealth Bonus</label><input type="text" name='attr_save_wealth' class='sheet-short'>
+      <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_wealth}]]}}'></button>
+      <br />
+</div>
+
+<div class="col">
+  <img src="./rtr_logo.png" />
+</div>
+
+<hr/>
+
+<div class="3colrow">
+  <div class="col">
+    <h2>Saving Throws</h2>
+
+    <label>Weapon</label><input type="text" name='attr_save_weapon' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_weapon} + ?{Modifiers:|0}]]}}'></button>
+        <br />
+    <label>Social</label><input type="text" name='attr_save_social' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_social} + ?{Modifiers:|0}]]}}'></button>
+        <br />
+    <label>Ailment</label><input type="text" name='attr_save_ailment' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_ailment} + ?{Modifiers:|0}]]}}'></button>
+        <br />
+    <label>Spell</label><input type="text" name='attr_save_spell' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_spell} + ?{Modifiers:|0}]]}}'></button>
+        <br />
+  </div>
+
+  <div class="col">
+    <h2>Attacks</h2>
+
+    <fieldset>
+      <label>Name</label><input type="text" name='attr_attack_name' class='sheet-short'>
+      <label>Tags</label><input type="text" name="attr_attacktags" value="">
+      <label>Damage</label><input type="number" name='attr_attackdamage'>
+      <label>Effects</label><input type="text" name='attr_attackeffects'>
+      <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{damage=@{attackdamage}}} 
+        {{effects=@{attackeffects}}}'></button>
+    </fieldset>
+  </div>
+
+  <div class="col">
+    <h2>Feats</h2>
+
+    <fieldset class="repeating_feats">
+      <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{feat=@{featname}}} 
+      {{description=@{feateffect}}} {{result=[[@{generic_save} + @{featbonus} + ?{Modifiers:|0}]]}}"></button>
+      <label>Name</label><input type="text" name="attr_featname" value="">
+      <label>Roll Bonus</label><input type="number" name="attr_featbonus" value="0">
+      <label>Description</label><input type="text" name="attr_feateffect" value="">
+    </fieldset>
+  </div>
+</div>
+
+</br>
+
+<div>
+  <h2>Perks</h2>
+  <fieldset class="repeating_perks">
+    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{perk=@{perkname}}} 
+    {{description=@{perkeffect}}}"></button>
+    <label>Name</label><input type="text" name="attr_perkname" value="">
+    <label>Description</label><input type="text" name="attr_perkeffect" value="">
+  </fieldset>  
+</div>
+
+</br>
+
+<div>
+  <h2>Spells</h2>
+  <fieldset class="repeating_spells">
+    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{level=?{Spell Level:|1}}} {{spell=@{spellname}}} 
+      {{description=@{spelleffect}}} {{higherlevel=@{spellhigherlevels}}}"></button>
+    <label>Name</label><input type="text" name="attr_spellname" value="">
+    <label>Tags</label><input type="text" name="attr_spelltags" value="">
+    <label>Innate</label><input type="checkbox" name="attr_spellinnate">
+    <label>Max Level</label><input type="number" name="attr_spelllevel_max">
+    <label>Roll Bonus</label><input type="number" name="attr_spellbonus" value="">
+    <label>Description</label><input type="text" name="attr_spelleffect" value="">
+    <label>Higher Levels</label><input type="text" name="attr_spellhigherlevels" value="">
+  </fieldset>  
+</div>
+
+</br>
+
+<div>
+  <table>
+    <tr>
+      <th>Advancement Point</th>
+      <th></th>
+      <th>Benefits</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><input type="checkbox"></td>
+      <td><input type="text"></td>
+    </tr>
+  </table>
+</div>
