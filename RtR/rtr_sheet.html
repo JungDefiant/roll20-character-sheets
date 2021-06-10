@@ -1,7 +1,6 @@
-<div name="attr_generic_save" value="1d10cs>20cf<5"></div>
+<img src="https://drive.google.com/file/d/1EZQkzan7BKEp1iY49psKlGiYmG1ZRD1q/view?usp=sharing" />
 
-<div class="3colrow">
-  <div class="col">
+<div>
     <label>Name:</label><input type="text" name="attr_character_name" />
     <label>Pronouns:</label><input type="text" />
     <label>Ancestry:</label>
@@ -30,12 +29,8 @@
     <label>Wounds:</label>
       <input type="number" name="attr_wounds" value="0" />
     <label>Wealth Bonus</label><input type="text" name='attr_save_wealth' class='sheet-short'>
-      <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_wealth}]]}}'></button>
+      <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{save_wealth}+?{Modifiers|0} })cs>20cf<5]] [[(1d10+@{save_wealth}+?{Modifiers|0} })cs>20cf<5]]}}'></button>
       <br />
-</div>
-
-<div class="col">
-  <img src="./rtr_logo.png" />
 </div>
 
 <hr/>
@@ -44,30 +39,32 @@
   <div class="col">
     <h2>Saving Throws</h2>
 
-    <label>Weapon</label><input type="text" name='attr_save_weapon' class='sheet-short'>
-        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_weapon} + ?{Modifiers:|0}]]}}'></button>
+    <label>Weapon</label><input type="number" name='attr_save_weapon' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{type=Weapon}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{save_weapon}+?{Modifiers|0})cs>20cf<5]] [[(1d10+@{save_weapon}+?{Modifiers|0})cs>20cf<5]]}}'></button> 
         <br />
-    <label>Social</label><input type="text" name='attr_save_social' class='sheet-short'>
-        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_social} + ?{Modifiers:|0}]]}}'></button>
+    <label>Social</label><input type="number" name='attr_save_social' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{type=Social}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{save_social}+?{Modifiers|0})cs>20cf<5]] [[(1d10+@{save_social}+?{Modifiers|0})cs>20cf<5]]}}'></button> 
+
         <br />
-    <label>Ailment</label><input type="text" name='attr_save_ailment' class='sheet-short'>
-        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_ailment} + ?{Modifiers:|0}]]}}'></button>
+    <label>Ailment</label><input type="number" name='attr_save_ailment' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{type=Ailment}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{save_ailment}+?{Modifiers|0})cs>20cf<5]] [[(1d10+@{save_ailment}+?{Modifiers|0})cs>20cf<5]]}}'></button> 
+
         <br />
-    <label>Spell</label><input type="text" name='attr_save_spell' class='sheet-short'>
-        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{result=[[@{generic_save} + @{save_spell} + ?{Modifiers:|0}]]}}'></button>
+    <label>Spell</label><input type="number" name='attr_save_spell' class='sheet-short'>
+        <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{type=Spell}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{save_spell}+?{Modifiers|0})cs>20cf<5]] [[(1d10+@{save_spell}+?{Modifiers|0})cs>20cf<5]]}}'></button> 
+
         <br />
   </div>
 
   <div class="col">
     <h2>Attacks</h2>
 
-    <fieldset>
-      <label>Name</label><input type="text" name='attr_attack_name' class='sheet-short'>
+    <fieldset class="repeating_attacks">
+      <label>Name</label><input type="text" name='attr_attackname' class='sheet-short'>
       <label>Tags</label><input type="text" name="attr_attacktags" value="">
       <label>Damage</label><input type="number" name='attr_attackdamage'>
       <label>Effects</label><input type="text" name='attr_attackeffects'>
-      <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{damage=@{attackdamage}}} 
-        {{effects=@{attackeffects}}}'></button>
+      <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{attack=@{attackname}}} {{damage=@{attackdamage}}} {{effects=@{attackeffects}}}'></button>
     </fieldset>
   </div>
 
@@ -75,8 +72,7 @@
     <h2>Feats</h2>
 
     <fieldset class="repeating_feats">
-      <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{feat=@{featname}}} 
-      {{description=@{feateffect}}} {{result=[[@{generic_save} + @{featbonus} + ?{Modifiers:|0}]]}}"></button>
+      <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{feat=@{featname}}} {{description=@{feateffect}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{featbonus}+?{Modifiers|0} })cs>20cf<5]] [[(1d10+@{featbonus}+?{Modifiers|0} })cs>20cf<5]]}}"></button>
       <label>Name</label><input type="text" name="attr_featname" value="">
       <label>Roll Bonus</label><input type="number" name="attr_featbonus" value="0">
       <label>Description</label><input type="text" name="attr_feateffect" value="">
@@ -89,8 +85,7 @@
 <div>
   <h2>Perks</h2>
   <fieldset class="repeating_perks">
-    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{perk=@{perkname}}} 
-    {{description=@{perkeffect}}}"></button>
+    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{perk=@{perkname}}} {{description=@{perkeffect}}}"></button>
     <label>Name</label><input type="text" name="attr_perkname" value="">
     <label>Description</label><input type="text" name="attr_perkeffect" value="">
   </fieldset>  
@@ -101,11 +96,11 @@
 <div>
   <h2>Spells</h2>
   <fieldset class="repeating_spells">
-    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{level=?{Spell Level:|1}}} {{spell=@{spellname}}} 
-      {{description=@{spelleffect}}} {{higherlevel=@{spellhigherlevels}}}"></button>
+    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{level=?{Spell Level:|1}}} {{spell=@{spellname}}} {{description=@{spelleffect}}} {{higher_level=@{spellhigherlevels}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{spellbonus}+?{Modifiers|0} })cs>20cf<5]] [[(1d10+@{spellbonus}+?{Modifiers|0} })cs>20cf<5]]}}"></button>
     <label>Name</label><input type="text" name="attr_spellname" value="">
     <label>Tags</label><input type="text" name="attr_spelltags" value="">
     <label>Innate</label><input type="checkbox" name="attr_spellinnate">
+    <label>Save Required?</label><input type="checkbox" name="attr_spellsavereq" value="1" checked>
     <label>Max Level</label><input type="number" name="attr_spelllevel_max">
     <label>Roll Bonus</label><input type="number" name="attr_spellbonus" value="">
     <label>Description</label><input type="text" name="attr_spelleffect" value="">
