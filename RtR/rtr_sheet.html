@@ -1,4 +1,4 @@
-<img width=75% src="https://raw.githubusercontent.com/JungDefiant/roll20-character-sheets/rtr_sheet/RtR/rtr_logo.png" />
+<img src="https://raw.githubusercontent.com/JungDefiant/roll20-character-sheets/rtr_sheet/RtR/rtr_logo.png" />
 
 <div>
     <label>Name:</label><input type="text" name="attr_character_name" />
@@ -28,7 +28,7 @@
       <input type="number" name="attr_ap" value="6" />
     <label>Wounds:</label>
       <input type="number" name="attr_wounds" value="0" />
-    <label>Wealth Bonus</label><input type="text" name='attr_save_wealth' class='sheet-short'>
+    <label>Wealth Bonus</label><input type="number" name='attr_save_wealth' class='sheet-short'>
       <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{save_wealth}+?{Modifiers|0} })cs>20cf<5]] [[(1d10+@{save_wealth}+?{Modifiers|0} })cs>20cf<5]]}}'></button>
       <br />
 </div>
@@ -63,7 +63,7 @@
       <label>Name</label><input type="text" name='attr_attackname' class='sheet-short'>
       <label>Tags</label><input type="text" name="attr_attacktags" value="">
       <label>Damage</label><input type="number" name='attr_attackdamage'>
-      <label>Effects</label><input type="text" name='attr_attackeffects'>
+      <label>Effects</label><textarea name='attr_attackeffects'></textarea>
       <button type='roll' name='roll_save' value='&{template:default} {{name=@{character_name}}} {{attack=@{attackname}}} {{damage=@{attackdamage}}} {{effects=@{attackeffects}}}'></button>
     </fieldset>
   </div>
@@ -72,10 +72,10 @@
     <h2>Feats</h2>
 
     <fieldset class="repeating_feats">
-      <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{feat=@{featname}}} {{description=@{feateffect}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{featbonus}+?{Modifiers|0} })cs>20cf<5]] [[(1d10+@{featbonus}+?{Modifiers|0} })cs>20cf<5]]}}"></button>
+      <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{feat=@{featname}}} {{description=@{feateffect}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{featbonus}+?{Modifiers|0})cs>20cf<5]] [[(1d10+@{featbonus}+?{Modifiers|0})cs>20cf<5]]}}"></button>
       <label>Name</label><input type="text" name="attr_featname" value="">
       <label>Roll Bonus</label><input type="number" name="attr_featbonus" value="0">
-      <label>Description</label><input type="text" name="attr_feateffect" value="">
+      <label>Description</label><textarea name="attr_feateffect" value=""></textarea>
     </fieldset>
   </div>
 </div>
@@ -85,9 +85,8 @@
 <div>
   <h2>Perks</h2>
   <fieldset class="repeating_perks">
-    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{perk=@{perkname}}} {{description=@{perkeffect}}}"></button>
     <label>Name</label><input type="text" name="attr_perkname" value="">
-    <label>Description</label><input type="text" name="attr_perkeffect" value="">
+    <label>Description</label><textarea name="attr_perkeffect" value=""></textarea>
   </fieldset>  
 </div>
 
@@ -96,15 +95,16 @@
 <div>
   <h2>Spells</h2>
   <fieldset class="repeating_spells">
-    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{level=?{Spell Level:|1}}} {{spell=@{spellname}}} {{description=@{spelleffect}}} {{higher_level=@{spellhigherlevels}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{spellbonus}+?{Modifiers|0} })cs>20cf<5]] [[(1d10+@{spellbonus}+?{Modifiers|0} })cs>20cf<5]]}}"></button>
+    <button type="roll" name="roll_feat" value="&{template:default} {{name=@{character_name}}} {{level=?{Spell Level:|1}}} {{spell=@{spellname}}} {{description=@{spelleffect}}} {{higher_level=@{spellhigherlevels}}} {{mod=?{Modifiers|0}}} {{r1=[[(1d10+@{spellbonus}+?{Modifiers|0})cs>20cf<5]] [[(1d10+@{spellbonus}+?{Modifiers|0})cs>20cf<5]]}}"></button>
     <label>Name</label><input type="text" name="attr_spellname" value="">
     <label>Tags</label><input type="text" name="attr_spelltags" value="">
     <label>Innate</label><input type="checkbox" name="attr_spellinnate">
     <label>Save Required?</label><input type="checkbox" name="attr_spellsavereq" value="1" checked>
     <label>Max Level</label><input type="number" name="attr_spelllevel_max">
     <label>Roll Bonus</label><input type="number" name="attr_spellbonus" value="">
-    <label>Description</label><input type="text" name="attr_spelleffect" value="">
-    <label>Higher Levels</label><input type="text" name="attr_spellhigherlevels" value="">
+    <label>Description</label><textarea name="attr_spelleffect" value=""></textarea>
+    <label>Higher Levels</label><textarea name="attr_spellhigherlevels" value=""></textarea>
+    
   </fieldset>  
 </div>
 
